@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle animation</title>
+    <style>
+        *{
+        margin: 0;
+        padding: 0;
+        
+    }
+    body{
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #canvas{
+        background: black;
+    }
+    
+    
+   </style>
+</head>
+<body>
+    <canvas id="canvas" width="360" height="640"></canvas>
+
+    <script>
+          function color() {
+            str='0123456789abcdef';
+            c1=Math.floor(Math.random()*15);
+            c2=Math.floor(Math.random()*15);
+            c3=Math.floor(Math.random()*15);
+            c4=Math.floor(Math.random()*15);
+            c5=Math.floor(Math.random()*15);
+            c6=Math.floor(Math.random()*15);
+            col="#"+str[c1]+str[c2]+str[c3]+str[c4]+str[c5]+str[c6];
+            
+            return col;
+        }
+    
+        canvas=document.getElementById('canvas');
+        context=canvas.getContext('2d');
+
+            x=360;
+            radius=0;
+            dir=1;
+
+        function animation (){
+            // context.clearRect(0,0,360,640);
+            angle=x* Math.PI/180;
+
+            context.beginPath();
+            if(radius==0){
+                dir=1;
+                col=color();
+                context.strokeStyle=col;
+            // context.clearRect(0,0,360,640);
+         }
+         
+         if(radius==50){
+            context.strokeStyle=color();
+                }
+      if(radius==100){
+        context.strokeStyle=color();
+              }
+         if(radius==150){
+            dir=-1;
+            context.strokeStyle=color();
+            // context.clearRect(0,0,360,640);
+         }
+
+           
+        context.arc(180,320,radius,0, angle);
+       context.stroke();
+            // console.log(window.requestAnimationFrame(animation))
+            radius+=(2*dir);
+          
+
+           setTimeout(animation,70)
+        }
+       
+        setTimeout(animation,2000)
+        
+      
+    </script>
+</body>
+</html>
